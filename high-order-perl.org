@@ -152,21 +152,22 @@
        print "$va\n";
        print \$va." ".\$vb."\n";
        #+end_src
-       
+
        #+RESULTS:
-         : bb
-         : cc
-         : SCALAR(0xa031ddc), ref: 
-         : SCALAR(0xa031ddc) SCALAR(0xa031e54)
-         : 456
-         : SCALAR(0xa031e54) SCALAR(0xa031e54)
-         : 789
-         : SCALAR(0xa031e54) SCALAR(0xa031e54)
+       : bb
+       : cc
+       : SCALAR(0x9264438), ref: 
+       : SCALAR(0x9264438) SCALAR(0x9264500)
+       : 456
+       : SCALAR(0x9264500) SCALAR(0x9264500)
+       : 789
+       : SCALAR(0x9264500) SCALAR(0x9264500)
        
        理解：
          1. 一个name代表一个内存地址，就如打出来那样。对于scalar，这个地址里保存的是数据。对于ref, 这个地址里保存的是另一个scalar的地址。
          2. *name=another_name: 将name映射到another_name， 即name代表的内存地址将于another_name的相同。
             #+begin_src perl :results output
+            $n="BBB\n";
             my $n="Tom\n";
             my $name="Jim\n";
             print \$n." ".\$name."\n";
@@ -174,13 +175,19 @@
             print $name;
             print \$n." ".\$name." ".\$main::name."\n";
             $ccc="AAA\n";
-            ,*name=n;
-            print $name;
+            ,*name=*n;
+            print $name; # $name is my $name, instead of $main::name. my vars will overide package vars.
             print $main::name;
             print \$n." ".\$name." ".\$main::name."\n";
             #+end_src
 
             #+RESULTS:
+            : SCALAR(0x8b482a8) SCALAR(0x8b482e4)
+            : Jim
+            : SCALAR(0x8b482a8) SCALAR(0x8b482e4) SCALAR(0x8b48398)
+            : Jim
+            : BBB
+            : SCALAR(0x8b482a8) SCALAR(0x8b482e4) SCALAR(0x8b48280)
 
             Why address of $name not changed? If remove 'my', then it will work;
             My variable can't be in a package.
