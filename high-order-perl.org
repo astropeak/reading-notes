@@ -1,43 +1,48 @@
 * High Order Perl
 ** chapter 3 Caching and Memoization
-   1. Memoize module
-      We can see the second ~fib(4)~ call result is cached and returned directly.
-      #+begin_src perl :results output
-      use Memoize;
-      memoize fib;
-      sub fib {
-          my $d = shift;
-          print "Enter fib, $d\n";
-          if ($d== 1 || $d==2){
-              return 1;
-          } else {
-              return fib($d-1)+fib($d-2);
-          }
-      }
-      $a=fib(4);
-      print "fib(4) result:$a\n";
-      $a=fib(4);
-      print "fib(4) result:$a\n";
+*** use Memoize module
+    The module is used to make a function caching it's result. The module is official.
+    
+    Example:
+    We can see form the result the second ~fib(4)~ call result is cached and returned directly.
+    #+begin_src perl :results output
+    use Memoize;
+    memoize fib;
+    sub fib {
+        my $d = shift;
+        print "Enter fib, $d\n";
+        if ($d== 1 || $d==2){
+            return 1;
+        } else {
+            return fib($d-1)+fib($d-2);
+        }
+    }
+    $a=fib(4);
+    print "fib(4) result:$a\n";
+    $a=fib(4);
+    print "fib(4) result:$a\n";
       #+end_src
-
-      #+RESULTS:
+    
+    #+RESULTS:
       : Enter fib, 4
       : Enter fib, 3
       : Enter fib, 2
       : Enter fib, 1
       : fib(4) result:3
       : fib(4) result:3
-   2. give an undefined variable a init value
-      #+begin_src perl :results output
+
+*** give an undefined variable a init value, by use '||='
+    #+begin_src perl :results output
       my ($str)=@_;
       # $str = "AAAA";
       $str||="Init String";
       print "$str\n";
-      #+end_src
-
-      #+RESULTS:
+    #+end_src
+    
+    #+RESULTS:
       : Init String
-   3. q{} and then replacing some patterns works like lisp macro
+
+*** q{} and then replacing some patterns works like lisp macro
       #+begin_src perl :results output
       my $name="Jim";
       my $code=q{
@@ -65,9 +70,10 @@
 
       Way of writig macro in perl:
       1. 
-   4. advice a function
-      Memoize works much like adivcing in emacs lisp.
-      How:
+
+*** advice a function
+    Memoize works much like adivcing in emacs lisp.
+    How:
       1. add_advice_before: the advice will run before the function
          #+begin_src perl :results output
          sub add_advice_before {
@@ -186,11 +192,10 @@
                sec: What does the * operator do?
             4. can't assign address of a my variable to a package variable.
                There should be some restriction. Or the '*a=b' is interpreted differently if $b is a my variable.
-   5. 
-
-               
-
-
-
-
-
+      
+      
+      
+      
+      
+      
+      
