@@ -21,7 +21,7 @@
     print "fib(4) result:$a\n";
     $a=fib(4);
     print "fib(4) result:$a\n";
-      #+end_src
+    #+end_src
     
     #+RESULTS:
       : Enter fib, 4
@@ -30,7 +30,7 @@
       : Enter fib, 1
       : fib(4) result:3
       : fib(4) result:3
-
+    
 *** give an undefined variable a init value, by use '||='
     #+begin_src perl :results output
       my ($str)=@_;
@@ -41,9 +41,9 @@
     
     #+RESULTS:
       : Init String
-
+    
 *** q{} and then replacing some patterns works like lisp macro
-      #+begin_src perl :results output
+    #+begin_src perl :results output
       my $name="Jim";
       my $code=q{
       sub {
@@ -56,90 +56,104 @@
       my $func=eval $code;
       # $name="Tom";
       $func->();
-      #+end_src
-
-      #+RESULTS:
-      : code:
+    #+end_src
+    
+    #+RESULTS:
+      : code:    
       : sub {
       :     print "Hello, $name.\n";
       : }
       : 
       : Hello, Jim.
-
-      But... what's the difference between q{} and ''? We just replace q{} with '' in above example, and the result is the same.
-
-      Way of writig macro in perl:
+    
+    But... what's the difference between q{} and ''? We just replace q{} with '' in above example, and the result is the same.
+    
+    Way of writig macro in perl:
       1. 
-
+         
 *** advice a function
     Memoize works much like adivcing in emacs lisp.
     How:
-      1. add_advice_before: the advice will run before the function
-         #+begin_src perl :results output
-         sub add_advice_before {
-             my ($orig_func, $advice)=@_;
-             my $stub = sub{
-                 $advice->(@_);
-                 $orig_func->(@_);
-             };
-             ,*{$orig_func} = $stub;
-             return $stub;
-         }
-         
-         sub aaa {print "orig function\n";}
-         sub adv {print "advice function\n";}
-         aaa;
-         add_advice_before('aaa', 'adv');
-         aaa;
-         #+end_src
+    1. add_advice_before: the advice will run before the function
+       #+begin_src perl :results output
+       use Aspk::Debug;
 
-         #+RESULTS:
+       sub add_advice_before {
+           my ($orig_func, $advice)=@_;
+           my $cref = *{$orig_func}{CODE};
+           my $stub = sub{
+               $advice->(@_);
+               $cref->(@_);
+           };
+           ,*{$orig_func} = $stub;
+           return $stub;
+       }
 
-         this works:
-         #+begin_src perl :results output
-         sub add_advice_before {
-             my ($orig_func, $advice)=@_;
-             my $stub = sub{
-                 $advice->(@_);
-                 $orig_func->(@_);
-             };
-             # *{$orig_func} = $stub;
-             my $name = ref($orig_func);
-             print "name: $name\n";
-             return $stub;
-         }
-         
-         sub aaa {print "orig function\n";}
-         sub adv {print "advice function\n";}
-         aaa;
-         ,*aaa = add_advice_before(\&aaa, \&adv);
-         aaa;
-         #+end_src
-      2. install by *{name} = new name;
-         #+begin_src perl :results output
-         sub aa {print "aa\n";}
-         sub bb {print "bb\n";}
-         ,*{aa}=\&bb;
-         aa;
-         ,*{aa}=sub{print "cc\n";};
-         aa;
-         
-         $va="123";
-         print \$va.", ref: ".ref($va)."\n";
-         $va="789";
-         $vb="456";
-         print \$va." ".\$vb."\n";
-         ,*va=vb;
-         # $va=\$vb;
-         print "$va\n";
-         print \$va." ".\$vb."\n";
-         
-         $vb="789";
-         print "$va\n";
-         print \$va." ".\$vb."\n";
-         #+end_src
+       sub aaa {print "orig function\n";}
+       sub adv {print "advice function\n";}
 
-         #+RESULTS:
+       print "before adviced, aaa=".\&aaa."\n";
+       aaa;
+       print "adding advice\n";
+       add_advice_before('aaa', 'adv');
+       print "\nafter adviced, aaa=".\&aaa."\n";
+       aaa;
+       #+end_src
+
+       #+RESULTS:
+       : before adviced, aaa=CODE(0x8cd523c)
+       : orig function
+       : adding advice
+       : 
+       : after adviced, aaa=CODE(0x8cb0a3c)
+       : advice function
+       : orig function
+
+       Lessons form the example:
+       1. get code ref from a string: ~$cref = *{string}{CODE};~
+          #+begin_src perl :results output
+          sub aaa{print "sub aaa\n";};
+          $cref = *{'aaa'}{CODE};
+          print 'aaa='.\&aaa."\n";
+          print 'cref='.$cref."\n";
+          $cref->('cref='.$cref."\n");
+          #+end_src
+
+          #+RESULTS:
+          : aaa=CODE(0x9700280)
+          : cref=CODE(0x9700280)
+          : sub aaa
+
+          Seems the two are the same:
+          $cref = \&$name;
+          $cref = *{$name}{CODE};
+       2. *{name} = $stub, to install a new value to name.
+       
+    2. install by *{name} = new name; and some try
+       #+begin_src perl :results output
+       sub aa {print "aa\n";}
+       sub bb {print "bb\n";}
+       ,*{aa}=\&bb;
+       aa;
+       ,*{aa}=sub{print "cc\n";};
+       aa;
+
+       $va="123";
+       print \$va.", ref: ".ref($va)."\n";
+       $va="789";
+       $vb="456";
+       print \$va." ".\$vb."\n";
+       ,*va=vb;
+       # $va=\$vb;
+       print "$va\n";
+       print \$va." ".\$vb."\n";
+
+       $vb="789";
+       print "$va\n";
+       print \$va." ".\$vb."\n";
+       #+end_src
+       
+       #+RESULTS:
          : bb
          : cc
          : SCALAR(0xa031ddc), ref: 
@@ -148,8 +162,8 @@
          : SCALAR(0xa031e54) SCALAR(0xa031e54)
          : 789
          : SCALAR(0xa031e54) SCALAR(0xa031e54)
-
-         理解：
+       
+       理解：
          1. 一个name代表一个内存地址，就如打出来那样。对于scalar，这个地址里保存的是数据。对于ref, 这个地址里保存的是另一个scalar的地址。
          2. *name=another_name: 将name映射到another_name， 即name代表的内存地址将于another_name的相同。
             #+begin_src perl :results output
@@ -192,10 +206,10 @@
                sec: What does the * operator do?
             4. can't assign address of a my variable to a package variable.
                There should be some restriction. Or the '*a=b' is interpreted differently if $b is a my variable.
-      
-      
-      
-      
-      
-      
-      
+               
+               
+    
+    
+    
+    
+    
