@@ -1,0 +1,175 @@
+* High Order Perl
+** chapter 3 Caching and Memoization
+   1. Memoize module
+      We can see the second ~fib(4)~ call result is cached and returned directly.
+      #+begin_src perl :results output
+      use Memoize;
+      memoize fib;
+      sub fib {
+          my $d = shift;
+          print "Enter fib, $d\n";
+          if ($d== 1 || $d==2){
+              return 1;
+          } else {
+              return fib($d-1)+fib($d-2);
+          }
+      }
+      $a=fib(4);
+      print "fib(4) result:$a\n";
+      $a=fib(4);
+      print "fib(4) result:$a\n";
+      #+end_src
+
+      #+RESULTS:
+      : Enter fib, 4
+      : Enter fib, 3
+      : Enter fib, 2
+      : Enter fib, 1
+      : fib(4) result:3
+      : fib(4) result:3
+
+
+   1. give an undefined variable a init value
+      #+begin_src perl :results output
+      my ($str)=@_;
+      # $str = "AAAA";
+      $str||="Init String";
+      print "$str\n";
+      #+end_src
+
+      #+RESULTS:
+      : Init String
+
+   2. q{} and then replacing some patterns works like lisp macro
+      #+begin_src perl :results output
+      my $name="Jim";
+      my $code=q{
+      sub {
+          print "Hello, __NAME__.\n";
+      }
+      };
+      $code=~s/__NAME__/\$name/g;
+      print "code:$code\n";
+      
+      my $func=eval $code;
+      # $name="Tom";
+      $func->();
+      #+end_src
+
+      #+RESULTS:
+      : code:
+      : sub {
+      :     print "Hello, $name.\n";
+      : }
+      : 
+      : Hello, Jim.
+
+      But... what's the difference between q{} and ''? We just replace q{} with '' in above example, and the result is the same.
+
+      Way of writig macro in perl:
+      1. 
+
+   3. advice a function
+      Memoize works much like adivcing in emacs lisp.
+      How:
+      1. add_advice_before: the advice will run before the function
+         #+begin_src perl :results output
+         sub add_advice_before {
+             my ($orig_func, $advice)=@_;
+             my $stub = sub{
+                 $advice->(@_);
+                 $orig_func->(@_);
+             };
+             ,*{$orig_func} = $stub;
+             return $stub;
+         }
+         
+         sub aaa {print "orig function\n";}
+         sub adv {print "advice function\n";}
+         aaa;
+         add_advice_before('aaa', 'adv');
+         aaa;
+         #+end_src
+
+         #+RESULTS:
+
+      2. install by *{name} = new name;
+         #+begin_src perl :results output
+         sub aa {print "aa\n";}
+         sub bb {print "bb\n";}
+         ,*{aa}=\&bb;
+         aa;
+         ,*{aa}=sub{print "cc\n";};
+         aa;
+         
+         $va="123";
+         print \$va.", ref: ".ref($va)."\n";
+         $va="789";
+         $vb="456";
+         print \$va." ".\$vb."\n";
+         ,*va=vb;
+         # $va=\$vb;
+         print "$va\n";
+         print \$va." ".\$vb."\n";
+         
+         $vb="789";
+         print "$va\n";
+         print \$va." ".\$vb."\n";
+         #+end_src
+
+         #+RESULTS:
+         : bb
+         : cc
+         : SCALAR(0xa031ddc), ref: 
+         : SCALAR(0xa031ddc) SCALAR(0xa031e54)
+         : 456
+         : SCALAR(0xa031e54) SCALAR(0xa031e54)
+         : 789
+         : SCALAR(0xa031e54) SCALAR(0xa031e54)
+
+         理解：
+         1. 一个name代表一个内存地址，就如打出来那样。对于scalar，这个地址里保存的是数据。对于ref, 这个地址里保存的是另一个scalar的地址。
+         2. *name=another_name: 将name映射到another_name， 即name代表的内存地址将于another_name的相同。
+            #+begin_src perl :results output
+            my $n="Tom\n";
+            my $name="Jim\n";
+            print \$n." ".\$name."\n";
+            $main::name="Main NAME\n";
+            print $name;
+            print \$n." ".\$name." ".\$main::name."\n";
+            $ccc="AAA\n";
+            ,*name=n;
+            print $name;
+            print $main::name;
+            print \$n." ".\$name." ".\$main::name."\n";
+            #+end_src
+
+            #+RESULTS:
+
+            Why address of $name not changed? If remove 'my', then it will work;
+            My variable can't be in a package.
+            #+begin_src perl :results output
+            $n="Tom\n";
+            $name="Jim\n";
+            print \$n." ".\$name."\n";
+            *main::name=main::n;
+            print $name;
+            print \$n." ".\$name."\n";
+            #+end_src
+
+            #+RESULTS:
+            : SCALAR(0xa031c8c) SCALAR(0xa031cb0)
+            : Tom
+            : SCALAR(0xa031c8c) SCALAR(0xa031c8c)
+
+            Conclusion:
+            1. my variable can't be in a package.
+            2. my variable will shadow package variable
+            3. *name equals to $_main{'name'}, if in main package.  
+               ref: http://wwwacs.gantep.edu.tr/docs/perl-ebook/ch18.htm
+               sec: What does the * operator do?
+            4. can't assign address of a my variable to a package variable.
+               There should be some restriction. Or the '*a=b' is interpreted differently if $b is a my variable.
+
+
+
