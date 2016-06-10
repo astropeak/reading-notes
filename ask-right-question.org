@@ -1,0 +1,16 @@
+* ask right question
+** chapter 11 are these statistic deceptive
+   1. some statistic is biased or hard to obtain, so you should first ask how the author get that stattistic
+   2. average number.
+      Three type of average numbers: mean, median, mode. 
+      The three differs a lot if some items is greatly large that most of items. 
+      The average salary has no sense.
+   3. the statistic not prove the conclusion.
+      1. think which statistic is needed to support the conslusion, and compare it with given
+      2. conclude form the statistic, and compare it with given
+   4. are there ommited information
+      the absolute number and percentage number.
+   5. risk statistic and ommitted information
+      risk increament percentage: 9% decrease to 6%, the rist increament percentage is 33%, seems quite good number, but acuttually only 3% was decrease.
+      
+      
