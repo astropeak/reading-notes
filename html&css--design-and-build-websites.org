@@ -1,0 +1,56 @@
+* html&css - design and build websites
+** chapter 1 structure
+   Every document has a structure. Structure makes a document more readable. In html files, elements are used to add structure. In this chapter, ~h1~ (main heading), ~h2~ (sub heading), ~p~ are introduced.
+
+   Tag attribute, head and title element. Create a html page using notepad.
+
+   Simple and short.
+** chapter 2 text
+   Two type of elements:
+   1. structure element. Such as ~h1~, ~p~.
+   2. semantic element. Such as ~em~, ~sup~, ~cite~.
+
+   Elements introduced in this chapter:
+   | element    | description                           | example                   |
+   |------------+---------------------------------------+---------------------------|
+   | b          | bold                                  | this is <b> not</b> a dog |
+   | i          | italic                                | Is this a <i>dog</i>?     |
+   |------------+---------------------------------------+---------------------------|
+   | strong     | important item, usually in bold       | <strong>XXX</strong>      |
+   | em         | emphasize, usually in italic          | <em>XXX</em>              |
+   | sup        | superscript                           | EM<sup>2</sup>            |
+   | sub        | subscript                             | H<sub>2</sub>O            |
+   | del        | deleted content, together with ins    | He <del>come</del><ins>   |
+   |            | element to display content change.    | comes</ins> lately.       |
+   |            | A line through the word               |                           |
+   | ins        | new added content. underscore         |                           |
+   | s          | something no longer correct, but      | such as a price           |
+   |            | should not be deleted. a line through |                           |
+   | blockquote | long quote. will be indented.         | <blockquote><p>XXXXX</p>  |
+   |            | cite attribute indicates where the    | </blockquote>             |
+   |            | quote from(a URL).                    |                           |
+   | q          | short word quote. Will be surround    | <q>XXXX</q>               |
+   |            | by "". But IE not works.              |                           |
+   |            | also has cite attribute.              |                           |
+   | cite       | used to refer book names              |                           |
+   | abbr       | used to abbrivation. title attibute   | <abbr title="defintion    |
+   |            | specify the whold words               | of done">DOD</abbr>       |
+   | dfn        | used to new terms.                    | A <dfn>Black hole</dfn>.  |
+   | address    | contact details for the author        |                           |
+   |            | italic                                |                           |
+   |------------+---------------------------------------+---------------------------|
+   | br         | line break                            | <br />                    |
+   | hr         | horizontal rule                       | <hr />                    |
+   |            |                                       | Note: the blank and /.    |
+   |------------+---------------------------------------+---------------------------|
+   Note: some are semantic element, some are structure element.
+   
+   About white spaces in html documents: two or more spaces are treated as one. This is called *white space collasping*.
+
+   On semantic elements: the purpose is to describe the content more accurately. Should not be used only for changing apprance.
+
+*** comments
+    1. I use semantic element very little.
+    2. why semantic element should be used?
+    3. html5 add many structure elements such as section, artical, nav.
+
