@@ -22,15 +22,49 @@
     $a=fib(4);
     print "fib(4) result:$a\n";
     #+end_src
-    
+
     #+RESULTS:
-      : Enter fib, 4
-      : Enter fib, 3
-      : Enter fib, 2
-      : Enter fib, 1
-      : fib(4) result:3
-      : fib(4) result:3
+    : Enter fib, 4
+    : Enter fib, 3
+    : Enter fib, 2
+    : Enter fib, 1
+    : fib(4) result:3
+    : fib(4) result:3
     
+    Another example, the sub returns a list
+    #+begin_src perl :results output
+    use Memoize;
+    memoize fib;
+    sub fib {
+        my $d = shift;
+        print "Enter fib, $d\n";
+        if ($d== 1 || $d==2){
+            return (1, 2, 3);
+        } else {
+            return ('a', 'b', 'c');
+        }
+    }
+    @a=fib(4);
+    print "fib(4) result:@a\n";
+    @a=fib(4);
+    print "fib(4) result:@a\n";
+    $a=fib(4);
+    print "fib(4) result:$a\n";
+    $a=fib(4);
+    print "fib(4) result:$a\n";
+    @a=fib(4);
+    print "fib(4) result:@a\n";
+    #+end_src
+
+    #+RESULTS:
+    : Enter fib, 4
+    : fib(4) result:a b c
+    : fib(4) result:a b c
+    : Enter fib, 4
+    : fib(4) result:c
+    : fib(4) result:c
+    : fib(4) result:a b c
+
 *** give an undefined variable a init value, by use '||='
     #+begin_src perl :results output
       my ($str)=@_;
