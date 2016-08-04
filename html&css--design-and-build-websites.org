@@ -53,4 +53,35 @@
     1. I use semantic element very little.
     2. why semantic element should be used?
     3. html5 add many structure elements such as section, artical, nav.
+** chapter 3 list
+   Three types of list:
+   - ordered list :: use numbers
+   - unordered list :: use bullet
+   - definition list :: used to define terminology
+     
+   And list can be nested.
+   Examples:
+   #+begin_src html
+   <ol>
+     <li>list item 1</li>
+     <li>list item 2</li>
+   </ol>
+   
+   <ul>
+     <li>A nested list
+       <ol>
+         <li>aaaaa</li>
+         <li>bbbbb</li>
+       </ol>
+     </li>
+   </ul>
+   
+   <dl>
+     <dt>Definition term</dt>
+     <dd>definiton descript</dd>
+     <dt>aaa1</dt>
+     <dt>aaa2</dt>
+     <dd>Definiton for aaa1 and aaa2</dd>
+   </dl>
+   #+end_src
 
