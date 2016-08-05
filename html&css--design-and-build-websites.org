@@ -134,3 +134,5 @@
 
    image thranpanrency. if the Transpenry part is straight, use gif, else use PNG. And if partically transpenry, also use PNG.
      
+   On resolution:
+   From book 2, when image displayed in screen, resolution has no meaning, only pinexes make sence. I think resolution only related to displaying devices, not image itself.
