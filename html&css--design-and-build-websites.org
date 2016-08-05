@@ -85,3 +85,52 @@
    </dl>
    #+end_src
 
+** chapter 4 link
+   #+begin_src html
+   <a href="URL">Link </a>
+   #+end_src
+
+   User can click any content between <a> and </a> to go to the link.
+   
+   Value of href property can be:
+   | type         | syntax        | description                                   |
+   |--------------+---------------+-----------------------------------------------|
+   | absolute url | www.baidu.com |                                               |
+   | relative url | index.html    |                                               |
+   | position     | #top          | top is the id value of an element in the page |
+   | email        | mailto:a@b.c  | open mail client and send that mail           |
+   Note: Position can be used together with urls.
+
+   Open url in a new window: use the target property, and set value to "_blank". Should avoid use this, but if it is really needed, a good practice is inform the user first before open in new window.
+
+** chapter 5 image
+   #+begin_src html
+   <img src="images/logo.png" alt="CA Company" title="CA is a company form USA" />
+   #+end_src
+
+   - size :: the specified size same as real size.
+   - format :: jpeg for photograph(which has lots of color), png or gif for logo or illustrations(which has many part of flat color).
+   - resolution :: browser display picture in 72 ppi. I don't know meaning of resolution.
+     
+   Other property
+   - width and height.
+   - align. left and right for horizontal align, top, middle, bottom for vertical align. *This property is deleted in html5*. Align left has the same effect as float left(align right as float right).
+
+   New element introduced by html5:
+   - figure. Associates an img element with a caption
+   - figcaption. figure caption.
+   - example
+     #+begin_src html
+     <figure>
+       <img src="Food.jpeg" alt="Food" />
+       <figcaption>All kinds of food</figcaption>
+     </figure>
+     #+end_src
+     Notes: more than one img elements are allowed if there share same caption.
+   
+   Vector image: draw dots in grid and fill line and color dynamiclly, so that when scaled, the quality will not lose.
+
+   Animate gif: a gif made of several frames, each of which display a different image.
+
+   image thranpanrency. if the Transpenry part is straight, use gif, else use PNG. And if partically transpenry, also use PNG.
+     
