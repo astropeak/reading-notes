@@ -408,3 +408,20 @@
        | &trade; | trademark sign |
        | &times; | X              |
        | &divide | divide sign    |
+** chapter 9 flash, video and audio
+   - test
+     #+begin_src html :tangle flash_test.html
+     <!DOCTYPE html>
+     <head>
+       <script type="test/javascript" src="./swfobject.js"> </script>
+       <script>
+         swfobject.embedSWF("./Car-speakers-590x90.swf", "car", "590", "90", "8.0.0");
+       </script>
+     </head>
+     <body>
+       <div id="car"><p>aaaaaaaa</p></div>
+     </body>
+     #+end_src
+     Notes:
+     - the above source doesn't work on firefox. ~aaaaaaaaa~ will be displayed
+       
