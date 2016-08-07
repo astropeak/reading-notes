@@ -1,4 +1,4 @@
-* html&css - design and build websites
+* html & css - design and build websites
 ** chapter 1 structure
    Every document has a structure. Structure makes a document more readable. In html files, elements are used to add structure. In this chapter, ~h1~ (main heading), ~h2~ (sub heading), ~p~ are introduced.
 
