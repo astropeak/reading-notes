@@ -136,3 +136,275 @@
      
    On resolution:
    From book 2, when image displayed in screen, resolution has no meaning, only pinexes make sence. I think resolution only related to displaying devices, not image itself.
+** chapter 6 table
+   - element
+     | name  | description                                | example |
+     |-------+--------------------------------------------+---------|
+     | table | root element                               |         |
+     | tr    | table row                                  |         |
+     | td    | table data. Each cell                      |         |
+     | th    | also table cell, but represent a head cell |         |
+     |-------+--------------------------------------------+---------|
+     | thead | table head row                             |         |
+     | tbody | table body                                 |         |
+     | tfoot | table foot row                             |         |
+     |       | Note: the above 3 are for long tables      |         |
+     Note:
+     - th will be displayed bold, centering. td is left align.
+     - th can take an attribute ~scope~ to specify it is for ~row~ or ~col~.
+
+   - attributes
+     - td, th
+       | name    | descrition               | example          |
+       |---------+--------------------------+------------------|
+       | colspan | column number for a cell | <td colspan="2"> |
+       | rowspan | row number for a cell    | <td rowspan="3"> |
+
+   - deprecated attributes
+     | name        | description                | example                  |
+     |-------------+----------------------------+--------------------------|
+     | width       | on a table, the width      | <table width="400"       |
+     | cellpadding | like pading for an element |                          |
+     | cellspacing | like margin for an element |                          |
+     | border      | border width               | <table border="2"        |
+     | bgcolor     | background color           | <table bgcolor="#aabbcc" |
+     Note: 
+     - all above value's unit is pinxl
+     - use css instead of these attributes for new websites
+   - example
+     #+begin_src html :tangle table_example.html
+     <!DOCTYPE html>
+     <head>
+       <title>Table</title>
+       <style>
+         /* achieve <table border="1">*/
+         table, td, th {
+         border: 1px solid;
+         }
+       </style>
+     </head>
+     <body>
+       <table>
+         <tr>
+           <th></th>
+           <th>Mon</th>
+           <th>Tus</th>
+           <th>Wen</th>
+           <th>Thu</th>
+           <th>Fri</th>
+           <th>San</th>
+           <th>Sun</th>
+         </tr>
+         <tr>
+           <th>8:00-9:30</th>
+           <td rowspan="2">Math</td>
+           <td>English</td>
+           <td>History</td>
+           <td>Physicics</td>
+           <td>Chemistry</td>
+           <td rowspan="4">Play</td>
+           <td rowspan="4">Play</td>
+         </tr>
+         <tr>
+           <th>10:00-11:30</th>
+           <td>English</td>
+           <td>History</td>
+           <td>Physicics</td>
+           <td>Chemistry</td>
+         </tr>
+         <tr>
+           <th>14:00-15:30</th>
+           <td>Math</td>
+           <td>English</td>
+           <td>History</td>
+           <td>Physicics</td>
+           <td>Chemistry</td>
+         </tr>
+         <tr>
+           <th>16:00-17:30</th>
+           <td>Math</td>
+           <td>English</td>
+           <td>History</td>
+           <td>Physicics</td>
+           <td>Chemistry</td>
+         </tr>
+         <tr>
+           <th>19:00-21:30</th>
+           <td colspan="7"> Self study</td>
+         </tr>
+       </table>
+     </body>
+     #+end_src
+** chapter 7 form
+   - points
+     - difference between ~button~ element and ~input submit~ or ~input image~. ~button~ allow more flexiable apperance of a summit button, because the apperance is done by the html codes insides the element. While ~input submit~ or ~input image~ are all empty element, so the apperance is fixed.
+     - difference between radio button and selection list. They have same function. Use radio button when the selection number is small(so that user can see all at a glance), otherwise use selection list.
+   - elements
+     | name           | desription                                 | example |
+     |----------------+--------------------------------------------+---------|
+     | form           |                                            |         |
+     | input text     | plain text                                 |         |
+     | input password | password, will not shown                   |         |
+     | input radio    | radio button. Can only select one          |         |
+     | input checkbox | checkbox. Can select many                  |         |
+     | input submit   | submit button of the form. value attribute |         |
+     |                | specify the displayed text                 |         |
+     | input image    | submit button but display an image         |         |
+     | button         | submit button but display any data         |         |
+     | select         | selection list. Has many option element    |         |
+     | textarea  | multiple line input                        |         |
+     | fieldset       | used to group many input control in a      |         |
+     |                | large form                                 |         |
+     | legend         | legend for a fieldset            |         |
+     | label          | the label for an input control             |         |
+     Notes:
+     - button, label, select, textarea, caption are non emepty element, all other are empty.
+     - broswer will draw a border for each fieldset.
+
+   - attributes
+     - form
+       | name   | descrition                                 | example |
+       |--------+--------------------------------------------+---------|
+       | action | the url that this form will be sent to     |         |
+       | method | get or post. Use post when 1. secure data; |         |
+       |        | 2. very long data                          |         |
+
+     - textarea
+       | name | descrition                    | example |
+       |------+-------------------------------+---------|
+       | cols | column number of the textarea |         |
+       | rows | row number                    |         |
+
+     - input text
+       | name      | descrition                                      | example                  |
+       |-----------+-------------------------------------------------+--------------------------|
+       | size      | the length of the input text in character count | seems this is deprecated |
+       | maxlength | the maximum character that can be inputted      |                          |
+
+   - on label
+     - each input control should has a label element, which is used to describe the meaning of that input control. And it also helps the eye impaired to use the form.
+     - position of the label.
+       - left or above: input text, input area, select list, password
+       - right: radio, checkbox
+     - method of associating a label with an input control
+       - the label element wrap the input control
+       - use the ~for~ attribute of label element, the value is the ~id~ attribute of the target input control.
+   - on html5 element
+     html5 add some input type, and add validation of the data, such as an email, a url.
+   - example
+     #+begin_src html :tangle form_example.html
+     <!DOCTYPE html>
+     <head>
+       <title>Form</title>
+     </head>
+     <body>
+       <form action="aaa.html" method="get">
+         <fieldset>
+           <legend> Your Details:</legend>
+           <label>Name:<input type="text" name="name" size="60" required="required"/></label> <br />
+           <label>Email:<input type="email" name="email" size="60" required="required"/></label> <br />
+         </fieldset>
+         <fieldset>
+           <legend> Your Review:</legend>
+           <p>
+             <label>How did you hear about us?
+               <select name="how">
+                 <option value="google">Google</option>
+                 <option value="newspaper">Newspaper</option>
+                 <option value="tv">TV</option>
+               </select>
+             </label>
+           </p>
+           <p>
+             Would you visit again?<br />
+             <label> <input type="radio" name="visit" value="yes" checked="checked"> Yes</label>
+             <label> <input type="radio" name="visit" value="no"> No</label>
+             <label> <input type="radio" name="visit" value="maybe"> Maybe</label>
+           </p>
+           <p>
+             <label>Comments:<br />
+               <textarea name="comments" rows="3" cols="70"></textarea>
+             </label>
+           </p>
+           <label><input type="checkbox" name="signup" value="signup" checked="checked">
+             Sign me up for email updatas
+           </label > <br />
+
+           <input type="submit" value="Submit review">
+         </fieldset>
+       </form>
+     </body>
+     #+end_src
+     Note:
+     - use <p> for some elements. They are really some paragraph
+     - legend not need a <br>
+
+** chapter 8 extra markup
+   - toc
+     - indicate html version
+       - representation elements in html4 are deleted, such as 
+         - center: center a text
+         - strike: put a line through a text
+         - font: set font
+         They can all be achieved by CSS.
+       - ~<!DOCTYPE html>~ for html 5
+       - ~<!DOCTYPE html PUBLIC
+           "" ".....dtd">~ for html 4
+         
+     - add comments
+       ~<!-- comment goes here -->~
+     - global attributes
+       - id. unique elemnts.
+       - class. a group of similar elements.
+       The two elemtns are maily use for set different apprance 
+     - grouping elements
+       - grouping elements in a block
+         By use of div elements. The content of div elements will start on a new line, but other than this it will make no difference to the presentation of the page.
+
+       - grouping elements inline
+         By use of span. span is the inline equivalent of div. People use span mainly for control the appearence of the content. span element can contain other inline elements.
+     - embeded a html page in a html page using iframe
+       Using the iframe elememnt(inline frame). Attributes:
+       - src :: the url of the target page
+       - width :: the width in pixels
+       - height :: the height in pixels
+     - add info by meta element
+       set key value pairs for this page. Typical ones are:
+       | name        | content  | description                                           |
+       | description |          | the description of this page, at most 155 characters. |
+       |             |          | used by search engine. Sometimes it will also be      |
+       |             |          | displayed in result of SE.                            |
+       | keywords    |          | seperated by comma. No has little effect on SEO       |
+       | robots      | noindex  | this page should not be added to search result        |
+       |             | nofollow | this page can be added but not the pages it links to  |
+       
+       | http-equiv | content                       | description                               |
+       |------------+-------------------------------+-------------------------------------------|
+       | author     |                               | the author of the page                    |
+       | pragma     | no-cache                      | prevent the browser from caching the page |
+       | expires    | Sun, 07 Aug 2016 16:33:07 GTM | When the page will expires(so that cached) |
+       |            |                               | should be updated                          |
+       
+       examples:
+       #+begin_src html
+       <meta name="description" content="Books on programming" />
+       <meta name="keywords" content="book, programming" />
+       <meta name="robots" content="noindex" />
+       <meta http-equiv="author" content="Astropeak" />
+       <meta http-equiv="pragma" content="no-cache" />
+       <meta http-equiv="expires" content "Sun, 07 Aug 2016 16:00:00 GTM" />
+       #+end_src
+
+     - insert special characters, such as copyright, <.
+       Search ~escape codes~. some examples:
+       | code    | represent char |
+       |---------+----------------|
+       | &lt;    | <              |
+       | &gt;    | >              |
+       | &amp;   | &              |
+       | &quot;  | "              |
+       | &copy;  | copyright sign |
+       | &reg;   | register sign  |
+       | &trade; | trademark sign |
+       | &times; | X              |
+       | &divide | divide sign    |
