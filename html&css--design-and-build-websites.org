@@ -1,4 +1,5 @@
 * html & css - design and build websites
+  Official website: http://www.htmlandcssbook.com/code-samples/. All source codes can be downloaded.
 ** chapter 1 structure
    Every document has a structure. Structure makes a document more readable. In html files, elements are used to add structure. In this chapter, ~h1~ (main heading), ~h2~ (sub heading), ~p~ are introduced.
 
@@ -409,13 +410,13 @@
        | &times; | X              |
        | &divide | divide sign    |
 ** chapter 9 flash, video and audio
-   - test
+   - An code example that plays flash file
      #+begin_src html :tangle flash_test.html
      <!DOCTYPE html>
      <head>
-       <script type="text/javascript" src="./swfobject.js"> </script>
+       <script type="text/javascript" src="./html&css--design-and-build-websites/swfobject.js"> </script>
        <script type="text/javascript">
-         swfobject.embedSWF("./Car-speakers-590x90.swf", "car", "590", "90", "8.0.0");
+         swfobject.embedSWF("./html&css--design-and-build-websites/Car-speakers-590x90.swf", "car", "590", "90", "8.0.0");
        </script>
      </head>
      <body>
@@ -424,5 +425,13 @@
      #+end_src
      Notes:
      - swfobject's github officail page says flash is dead, the project was not maintained any more and the developers moved to other project. So no need to try it anymore I think.
-
+     - At first I wrote "test/javascript" mistakenly, so the code not works.
+   - reasons for why flash will dead
+     - In 2005, many js library(such jquery, prototype) created that supporting making simple animation
+     - In 2007, apple's iphone doesn't support flash
+     - In 2008, html5 support playing video or audio using video or audio element
+     - flash can't be used by disabled.
        
+       
+   
+   
