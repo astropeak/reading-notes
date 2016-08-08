@@ -413,15 +413,16 @@
      #+begin_src html :tangle flash_test.html
      <!DOCTYPE html>
      <head>
-       <script type="test/javascript" src="./swfobject.js"> </script>
-       <script>
+       <script type="text/javascript" src="./swfobject.js"> </script>
+       <script type="text/javascript">
          swfobject.embedSWF("./Car-speakers-590x90.swf", "car", "590", "90", "8.0.0");
        </script>
      </head>
      <body>
-       <div id="car"><p>aaaaaaaa</p></div>
+       <div id="car"><p>Your browser doesn't support flash.</p></div>
      </body>
      #+end_src
      Notes:
-     - the above source doesn't work on firefox. ~aaaaaaaaa~ will be displayed
+     - swfobject's github officail page says flash is dead, the project was not maintained any more and the developers moved to other project. So no need to try it anymore I think.
+
        
