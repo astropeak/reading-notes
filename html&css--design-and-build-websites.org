@@ -459,8 +459,64 @@
      - specificity. More specific a selector, the higher priority.
      - IMPORTANT. ~!important~ decorator will make the rule the highest priority.
 
+** chapter 11 color
+   - color terminology
+     #+begin_src css
+     red #ff0000
+     green #00FF00 rgb(0,255,0)
+     blue #0000FF
+     #+end_src
+     Why green is different?
+
+   - contrast
+     - Too high or too low contrast will all make the text hard to read
+     - for reversed out text, larger line height and big font weight make it easier to read.
+     - contrast check tool: https://snook.ca/technical/colour_contrast/colour.html#fg=000000,bg=AEAEAE. The page will calculate two value, which should pass the threshhold.
+   - select single element by assigning "class" such as "one", "two".
+   - HSL color
+     - hue: a color in color circle. 0-360. 0 is red, 120 is green, 240 is blue.
+     - saturation: ammount of grey. 0%-100%. the larger, the bright-coloured.
+     - lightness: the ammount of white or black. 0-100. 0% is black, 100% is white, 50% is normal.
+     - examples
+       #+begin_src css
+       hsl(0,100,100) = rgb(255,0,0)
+       #+end_src
+   - opacity
+     - rgba
+     - hsla
+     - for browser that not support a, use rgb as fallback to rgba.
+       #+begin_src css
+       p {
+           color: rgb(255,0,0);
+           color: rgba(255,0,0,0.5);
+       }
+       #+end_src
+** chapter 12 text
+   - typeface
+     - Five typefaces and some font names of that type
+       - serif. Georgia, Times, Times New Roman. 
+       - sans-serif. Arial, Verdana, Helvetica.
+       - monospace. Courier, Courier New.
+       - cursive. Comic Sans MS, Monotype Corsiva.
+       - fantacy. Impact, Haettenschweiler.
+     - browsers are supposed to supported at least one font of all five typefaces.
+     - At most 3 font type in one page.
+   - font-family peroperty is used to set typeface, its value is a font stack(a list of font seperated by comma). If first font is not installed in the browser, then the second will be tried. Examples:
+     #+begin_src css
+     body {
+         font-family: Georgia, "Times New Roman", Serif;
+     }
+     #+end_src
+     Notes:
+     - If there are spaces in font type name, then font name should be encolsed in "".
+     - Put a generic font type such as 'Serif', 'Sans-Serif' in case all ahead font are not installed.
+   - other property of a font except type
+     - weight. [Light, Medium, Bold, Black]. Specify the stroke width.
+     - style. [Normal, Italic, Oblique]. Oblique is put Normal on an angle.
+     - stretch. [Condensed, Regular, Extended]. The width of character.
+   - TOBE continued. THis chapter is quite new to me.
+
+     
 
 
 
-
-       
