@@ -431,7 +431,36 @@
      - In 2007, apple's iphone doesn't support flash
      - In 2008, html5 support playing video or audio using video or audio element
      - flash can't be used by disabled.
+*** TODO practice this latter
+    - Note taken on [2016-08-08 Mon 15:42] \\
+      to page 212
+    - State "TODO"       from ""           [2016-08-08 Mon 15:42]
+
        
        
    
    
+** chapter 10 introducing CSS
+   - browser quirks or CSS bug
+     - Some browser may display an element unexpected.
+     - Cross browser testing is a good way to find this type of problems. If an element displays abnormal in one browser while OK in all other browsers, then it must the bug of that browser. Cross browser testing tools:
+       - browsercam.com
+       - browserlab.adobe.com
+       - browsershots.org
+       - CrossBrowserTesting.com
+     - two websites on this topic
+       - PositionIsEverything.net. Lots of artical on this website.
+       - QuirksMode.org :: This website list if css property, selectors are supported by many browser(different version). Quite comprehensive. Over 16 years old. And also has a js section(the author claimed it is the largest section) that describe practical js knowledge. Such as object detection ~http://quirksmode.org/js/support.html~
+   - css inheritance
+     - use ~inherit~ as property's value to inherit it from parent element
+     - Some property will inherit value from parent, some will not.
+   - cascade rule
+     - last rule. last rule will overide former one.
+     - specificity. More specific a selector, the higher priority.
+     - IMPORTANT. ~!important~ decorator will make the rule the highest priority.
+
+
+
+
+
+       
