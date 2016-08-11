@@ -153,14 +153,14 @@
      Note:
      - th will be displayed bold, centering. td is left align.
      - th can take an attribute ~scope~ to specify it is for ~row~ or ~col~.
-
+       
    - attributes
      - td, th
        | name    | descrition               | example          |
        |---------+--------------------------+------------------|
        | colspan | column number for a cell | <td colspan="2"> |
        | rowspan | row number for a cell    | <td rowspan="3"> |
-
+       
    - deprecated attributes
      | name        | description                | example                  |
      |-------------+----------------------------+--------------------------|
@@ -458,7 +458,7 @@
      - last rule. last rule will overide former one.
      - specificity. More specific a selector, the higher priority.
      - IMPORTANT. ~!important~ decorator will make the rule the highest priority.
-
+       
 ** chapter 11 color
    - color terminology
      #+begin_src css
@@ -499,8 +499,8 @@
        - monospace. Courier, Courier New.
        - cursive. Comic Sans MS, Monotype Corsiva.
        - fantacy. Impact, Haettenschweiler.
-     - browsers are supposed to supported at least one font of all five typefaces.
-     - At most 3 font type in one page.
+     - browsers are supposed to supported at least one font for all five typefaces.
+     - At most 3 font type in one page considered good.
    - font-family peroperty is used to set typeface, its value is a font stack(a list of font seperated by comma). If first font is not installed in the browser, then the second will be tried. Examples:
      #+begin_src css
      body {
@@ -514,9 +514,126 @@
      - weight. [Light, Medium, Bold, Black]. Specify the stroke width.
      - style. [Normal, Italic, Oblique]. Oblique is put Normal on an angle.
      - stretch. [Condensed, Regular, Extended]. The width of character.
-   - TOBE continued. THis chapter is quite new to me.
-
+   - font scale. 8pt, 9, 10, 11, 12, 14, 18, 24, 36, 48, 60, 72. Developed 400 years ago and changed little.
+     - two common font scale scheme for a webpage.
+       | element | scheme 1 | scheme 2 | comment    |
+       |---------+----------+----------+------------|
+       | h1      | 24px     | 32px     | 2 times    |
+       | h2      | 18px     | 24px     | 1.5 times  |
+       | h3      | 14px     | 18px     | 2px larger |
+       | body    | 12px     | 16px     | base       |
+   - use a new font. @font-face
+     #+begin_src css
+     /* define the font */
+     @font-face {
+       font-family:"Name of the new font";
+       src:url("./aa/bb.eot");
+     }
      
-
-
-
+     /* use the font */
+     h1 {
+         font-family:"Name of the new font";
+     }
+     #+end_src
+     - font formats: eot, woff, tty, svg. Different support different font formats. So all formats should be provided.
+   - many propertys
+     | name            | description                          | example              |
+     |-----------------+--------------------------------------+----------------------|
+     | font-weight     |                                      |                      |
+     | font-style      | normal, italic, oblique              |                      |
+     | text-transform  | lowercase, uppercase, capitalize     |                      |
+     | text-decoration | underline, overline, line-through    |                      |
+     | line-height     |                                      |                      |
+     | align           | left, right, center, justify         |                      |
+     | vertical-align  | top, middle, bottom                  | only works on inline |
+     |                 |                                      | element              |
+     | text-indent     | can use negetive value, and can      |                      |
+     |                 | be used to hide elements but still   |                      |
+     |                 | let the element in the page          |                      |
+     | letter-spacing  | When use UPPERCASE letters,          |                      |
+     |                 | increase this makes more readable    |                      |
+     | word-spacing    | default value is 0.2em.              |                      |
+     | text-shadow     | left/right offset, top/bottom offset | 2px -3px #aaaaaa     |
+     |                 | blur size, color                     | 1px 1px 2px #888888  |
+   - pseudo element
+     | name          | description                    | example        |
+     |---------------+--------------------------------+----------------|
+     | :first-letter | The first letter of an element | p:first-letter |
+     | :first-line   | The first line of an element   | p:first-line   |
+     pseudo element acts like there are a real element that can be styled.
+   - pseudo class
+     | name     | description                 | example |
+     |----------+-----------------------------+---------|
+     | :link    | for link not visited        |         |
+     | :visited | for link visited            |         |
+     | :hove    | when hovering on an element |         |
+     | :focus   | when focus is on an element |         |
+     | :active  | when a button is clicked    |         |
+     note:
+     - should appear in order
+     - the first two are only for link(a) elements, the other are for all elements
+   - attributes selector
+     | name      | description                               | example         |
+     |-----------+-------------------------------------------+-----------------|
+     | exisence  | the attribute exists                      | p[class]        |
+     | equal     | the attribute euquals to given value      | p[class="dog"]  |
+     | space     | the value exists in list of space         | p[class~="dog"] |
+     |           | seperated attribute                       |                 |
+     | prefix    | the attribute' beginnig part is the value | p[class^="dog"] |
+     | suffix    | the attribute' ending part is the value   | p[class$="dog"] |
+     | substring | the attribute contains the value          | p[class*="aa"]  |
+   - example
+     #+begin_src html :tangle text_test.html
+     <!DOCTYPE html>
+     <head>
+       <title>text_test</title>
+       <style>
+         body {
+         font-size:12px;
+         font-family:sans-serif;
+         }
+         h1 {
+         font-size:24px;
+         text-transform:capitalize;
+         text-shadow:2px 2px 3px #000000;
+         color:#008888;
+         font-family:serif;
+         }
+         h2{
+         font-size:18px;
+         color:#008888;
+         font-family:serif;
+         text-transform:capitalize;
+         }
+         p.credit{
+         text-transform:uppercase;
+         color:#008888;
+         letter-spacing:0.1em;
+         word-spacing:0.2em;
+         }
+         p.intro:first-line{
+         font-weight:bold;
+         }
+         p>span.keyword{
+         color:#008888;
+         }
+         p.author{
+         font-style:italic;
+         text-align:right;
+         }
+       </style>
+     </head>
+     <body>
+       <h1>briards</h1>
+       <p class="credit">A heart wrapperd in fru</p>
+       <p class="intro">The <span class="keyword">briard</span>, this is a bood for list evaluation. If you want to create3 a file.</p>
+       <h2>breed history</h2>
+       <p>The braiars, This buffer is for notes you don't want to save, and for Lisp evaluation. ;; If you want to create a file, visit that file with C-x C-f, ;; then enter the text in that file's own buffer.
+       </p>
+       <p class="author">by Ive Ducket</p>
+     </body
+     #+end_src
+     note
+     - in the original example, h2 is h3, and first p is h2. and h2's font-size is smaller than h3's. This is strange.
+     - use class to indentify element instead of id. WHy?
+      
