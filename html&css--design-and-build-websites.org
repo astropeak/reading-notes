@@ -1,5 +1,8 @@
 * html & css - design and build websites
   Official website: http://www.htmlandcssbook.com/code-samples/. All source codes can be downloaded.
+** general idea
+   The book gives manmy practical advices, not only the knowledge points. This makes the book a good one.
+
 ** chapter 1 structure
    Every document has a structure. Structure makes a document more readable. In html files, elements are used to add structure. In this chapter, ~h1~ (main heading), ~h2~ (sub heading), ~p~ are introduced.
 
@@ -439,7 +442,6 @@
        
        
    
-   
 ** chapter 10 introducing CSS
    - browser quirks or CSS bug
      - Some browser may display an element unexpected.
@@ -637,3 +639,94 @@
      - in the original example, h2 is h3, and first p is h2. and h2's font-size is smaller than h3's. This is strange.
      - use class to indentify element instead of id. WHy?
       
+** chapter 13 box
+   - summary
+     - width, height. If em used, it is relative to the containing text
+     - centering a box. set a width, and set left and right margin to auto. For IE6 parent box's text-align should be set to center also.
+     - padding, margin, border.
+     - border/margin claspe. If one box in on top of another, then only one border will be shown.
+     - display. none, inline, blox, inline-box
+     - visibility. hidden, visible
+     - overflow. hidden, scrool
+     - ie6 box model quirk. It will treat box as bordered box by default. Given a DOCTYPE to fix this.
+     - border-image. The image will be splited to 9 pieces. repeat, strench.
+     - border-shadow. Much like text-shadow
+     - border-radius. You can set horizontal and vertical values seperately.
+   - example
+     #+begin_src html :tangle box_example.html
+     <!DOCTYPE html>
+     <head>
+       <title>box_example</title>
+       <style>
+         body {
+         border:3px double #888888;
+         font-size:16px;
+         min-width:550px;
+         font-family: "Courier New";
+         }
+         #wrapper{
+         width:80%;
+         min-width:500px;
+         max-width:900px;
+         margin:0 auto;
+         }
+         h1 {
+         text-transform:uppercase;
+         text-align:center;
+         line-height:60%;
+         }
+         h1 .one{
+         font-size:16px;
+         color:#888888;
+         }
+         h1 .two{
+         font-size:32px;
+         letter-spacing:0.1em;
+         }
+         h1 .three{
+         font-size:16px;
+         color:#888888;
+         letter-spacing:0.18em;
+         }
+         
+         .nav {
+         border-top:3px solid #000000;
+         border-bottom:2px solid #888888;
+         text-transform:uppercase;
+         padding:0;
+         }
+         li {
+         display:inline-block;
+         width:20%;
+         text-align:center;
+         padding:1em 0;
+         margin:0 0;
+         }
+         img{
+         margin:0;
+         width:33.33%;
+         }
+         p.description{
+         text-align:center;
+         }
+       </style>
+     </head>
+     <body>
+       <div id="wrapper">
+         <h1><span class="one">the</span><br />
+           <span class="two">analog</span><br />
+           <span class="three">specialists</span>
+         </h1>
+         <ul class="nav">
+           <li>home</li><li>for sale</li><li>repairs</li><li>about</li><li>contact</li>
+         </ul>
+     
+         <img src="a1.jpeg"><img src="a2.jpeg"><img src="a3.jpeg">
+     
+         <p class="description">We specialise in the sales and repair of classic keyboards, in particular the Fendar Rhodes, Wulizer EP200, Hobner Clavnet.
+         <p>
+       </div>
+     </body>
+     #+end_src
+     Note:
+     - for inline element(such as img, li with dispaly set to inline-block), there will be a margin between elements event the margin is set to 0. This is because there are whitespace between the elements in html file. Can be fixed by removing the whitespaces(both space, tab and newline).
