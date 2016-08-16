@@ -730,3 +730,164 @@
      #+end_src
      Note:
      - for inline element(such as img, li with dispaly set to inline-block), there will be a margin between elements event the margin is set to 0. This is because there are whitespace between the elements in html file. Can be fixed by removing the whitespaces(both space, tab and newline).
+
+     - TODO read the source code given by the book.
+** chapter 14 lists, tables and forms
+*** lists
+    | property            | description      | value                                  |
+    |---------------------+------------------+----------------------------------------|
+    | list-style-type     | the bullet type. | for ul: none, circle, squre, disc      |
+    |                     |                  | for ol: decimal, decimal-leading-zero  |
+    |                     |                  | , lower-alpha, upper-alpha, low-roman, |
+    |                     |                  | upper-roman                            |
+    | list-style-image    | image bullet     | url("image/a.png")                     |
+    | list-style-position | if the bullet is | inside(default value)                   |
+    |                     | in or out the    | outside                                |
+    |                     | text box         |                                        |
+    | list-style          | the shorthand    | define the above three property in     |
+    |                     |                  | any order                              |
+*** tables
+    | property         | description                | value               |
+    |------------------+----------------------------+---------------------|
+    | width            | table width                |                     |
+    | height           | table height               |                     |
+    | border           | border                     |                     |
+    | border-bottom    |                            |                     |
+    | border-top       |                            |                     |
+    | background-color | background-color           |                     |
+    | text-align       | alignment for text         |                     |
+    | padding          | padding for table cell     |                     |
+    | text-transform   |                            |                     |
+    | letter-spacing   |                            |                     |
+    | font-size        |                            |                     |
+    | :hover           |                            |                     |
+    | empty-cells      | show or hide empty cells   | show, hide, inherit |
+    |                  | border                     |                     |
+    | border-spacing   | space between cells. If    |                     |
+    |                  | use two value, horizental  |                     |
+    |                  | and vertical               |                     |
+    | border-collapse  | if borders of ajacent cell | collapse, seperate  |
+    |                  | should be collapsed.       |                     |
+    
+    Guildlines on how to make tables look clean and easy to follow:
+     - give cells padding. Then contents of cells will not touch a border.
+     - distinguish headings. bold, uppercase, border on heading cells.
+     - shade alternate rows. Different color for every other row.
+     - align numbers to right. So that large numbers are clearly distinguished
+*** forms
+    - align input field. Give a width to label and align to right. The author also use float, but I don't know why(TODO: find the reason).
+    - input text background-image. display an image on one side of the input text.
+    - filedset and legend style. Can use command property on these elements.
+*** example
+    #+begin_src html :tangle list_table_form_example.html
+    <!DOCTYPE html>
+    <head>
+      <title>list_table_form_example</title>
+      <style>
+    
+        ul {
+        list-style-image:url("./html&css--design-and-build-websites/html-and-css-book-code-0915/html-and-css-book-code-0915/chapter-14/images/icon-plus.png");
+        }
+        table, tr,th,td {
+        border:1px solid #666666;
+        border-collapse:collapse;
+        }
+        th, td{
+        padding:8px 6px;
+        }
+        table {
+        border-collapse:seperate;
+        border-radius:10px;
+        }
+        tr:nth-child(odd) {
+        background-color:#aaaadd;
+        }
+        tr:nth-child(even) {
+        background-color:#ccccee;
+        }
+        tr:nth-child(1) {
+        background-color:#8888DD;
+        color:white;
+        border-bottom:4px solid #6666EE;
+        }
+        form .title{
+        width:9em;
+        display:inline-block;
+        line-height:2em;
+        }
+        form {
+        width:22em;
+        }
+        fieldset{
+        border-radius: 5px;
+        }
+        legend{
+        font-style:italic;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Peroty Workshops</h1>
+      <p>We will conduction...</p>
+      <p>Please not that the following ... </p>
+      <ul>
+        <li>A Pertric Perspective</li>
+        <li>Walt Winterman at War</li>
+        <li>Found poems and outside poretry</li>
+      </ul>
+      <table>
+        <tr>
+          <th></th>
+          <th>New Youk</th>
+          <th>Chikago</th>
+          <th>Sanfransisco</th>
+        </tr>
+        <tr>
+          <th>A Perotectic Persperctive</th>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+        </tr>
+        <tr>
+          <th>A Perotectic Persperctive</th>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+        </tr>
+        <tr>
+          <th>A Perotectic Persperctive</th>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+        </tr>
+        <tr>
+          <th>A Perotectic Persperctive</th>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+          <td>San, 4 Feb 2012<br />11am-2pm</td>
+        </tr>
+      </table>
+      
+      <form>
+        <fieldset>
+          <legend>Register your interest</legend>
+          <label><span class="title">
+              Your name:</span><input name="name" type="text"></label> <br />
+          <label><span class="title">
+              Your email:</span><input name="email" type="email"></label> <br />
+          <label><span class="title">
+              Your colsest center:</span>
+            <select name="center">
+              <option value="NewYork">New York</option>
+              <option value="chicago">Chicago</option>
+          </select></label>
+          <p><span class="title">
+              Are you a member?</span>
+            <label> <input name="member" type="radio" value="yes">Yes</label>
+            <label> <input name="member" type="radio" value="no">No</label>
+          </p>
+                </body
+    #+end_src
+    TODO: the table border radius can't work.
+    TODO: the input box doesn't align correctly.
+    
