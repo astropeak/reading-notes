@@ -891,3 +891,20 @@
     TODO: the table border radius can't work.
     TODO: the input box doesn't align correctly.
     
+** chapter 15 layout
+   - Summary
+     - element position. the ~position~ property. Values are ~static~ (defaunt value), ~relative~, ~absolute~, ~fixed~. The ~float~ property, values are ~left~, ~right~.
+       - A bug using ~float~. If an element's chilren are all floating boxes, then its height will be 0 no matter what height chirdren elements have. Fixed by adding two rules to this element.
+         #+begin_src css
+         overflow:auto;
+         width:100%;
+         #+end_src
+     - screen resolution. Width: 960-1000 pixels, height: 570-600 pixels. 'fold space'. The visible area without scrolling has large impact on the vistor's decision.
+     - fixed and lyquid layout. The first use pixels, the second use percentage. Both have advantages and disadvantages.
+     - grid system. 960 pixels grid. 12 columns, each 60 pixels width, with 10px margin(so the margin between columns is 20px). Grid is commonly used by all kinds of designers.
+       - css frameworks. 960.gs. The official sites gives many websites examples that using grid.
+     - multiple style sheet. 
+       - method 1. @import css rule.
+       - method 2. link element
+   - example
+     Use 960.gs to complete the task.
