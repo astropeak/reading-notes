@@ -932,3 +932,60 @@
 
 
          
+** chapter 17 html5 layout
+   - summary
+     - new elements introduced in html5. 
+       | name       | description                                           |
+       |------------+-------------------------------------------------------|
+       | header     | page header: heading, nav;                            |
+       |            | artical or setion header:                             |
+       | nav        | navigation                                            |
+       | adide      | page or article                                       |
+       | article    |                                                       |
+       | section    | Don't use as a wrapper, div is the best for this case |
+       | hgroup     | header group                                          |
+       | figure     |                                                       |
+       | figcaption |                                                       |
+       |            |                                                       |
+     - adapt to old browser. New element will be treated as inline element, so they should set as block element. For IE lower than 9, a js script is needed, htmlshiv, or the content can't be seen.
+   - example
+     #+begin_src html :tangle html5_layout_example.html
+     <!DOCTYPE html>
+     <head>
+       <title>html5_layout_example</title>
+       <style>
+         ul {
+         display:inline;
+         list-style-type:none;
+         }
+       </style>
+     </head>
+     <body>
+       <header>
+         <img id="logo" src="aa.png"></img>
+         <hgroup>
+           <h1>YOKO's KITCHEN</h1>
+           <h2>JAPANESE COOKING CLASSES</h2>
+         </hgroup>
+         <nav>
+           <ul>
+             <li><a href="home.html" alt="home" class="active">Home</a></li>
+             <li><a href="classes.html" alt="classes" >Classes</a></li>
+             <li><a href="about.html" alt="about" >About</a></li>
+           </ul>
+         </nav>
+       </header>
+       <div id="content">
+         <artical>
+         </artical>
+         <artical>
+         </artical>
+       </div>
+       <aside>
+       </aside>
+       <footer>
+         &copy
+       </footer>
+     </body
+     #+end_src
+
