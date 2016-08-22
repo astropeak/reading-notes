@@ -931,7 +931,6 @@
 
 
 
-         
 ** chapter 17 html5 layout
    - summary
      - new elements introduced in html5. 
@@ -989,3 +988,20 @@
      </body
      #+end_src
 
+** chapter 18 process & design
+   I am not interesting to this chapter. Maybe because I don't need these knowledge currently.
+
+   The chapter mainly about
+   1. who is user of the website. Everyone is the commonly wrong answer.
+   2. why they need your website.
+   3. how to built your website to help the user get things they want quickly and easily. Some points: sitemap, visual hierarchy, priority(the most important thing look the most vivid), group, wireframes.
+** chapter 19 practical information
+   - SEO. 
+     - on-page(add keywords) and off-page(other page link to you).
+     - Add keyword to: title, url(file name), headings, text(repeated for 2-3 times), image alt, page description(meta element)
+     - Find the keyword.
+       - there are tools that recomend relevent keywords to you based on a given keyword.
+       - consider how many pages use this keyword. Competition.
+       - add 2-3 keyword to each page
+   - page analyze. The best tool: goolge analyzer, which is a script added to page, and collect data to server, and provide an interface to see the result, such as vister number, most visited pages.
+   - make your website online. Domain and host.
