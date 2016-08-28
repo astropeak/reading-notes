@@ -1,0 +1,7 @@
+* Learning web design
+** misc
+   Read through the TOC. Seems no many new contents.
+   Five sections: get started, html for structure, css for presentation, web graphics, from start to end.
+
+   New points: optimize graphics for different types.
+   
