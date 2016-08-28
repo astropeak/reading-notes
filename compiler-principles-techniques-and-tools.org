@@ -1,0 +1,38 @@
+* Compiler -- Priciples, Techniques and Tools
+  
+** terms
+   | shift                | consume a input, the dot in item forward (P237)      |
+   | reduce               | make a production. Convert many symbols to on symbol |
+   | LR(k)                | L means from left to right, R means rightmost,       |
+   |                      | k means number of symbols look ahead                 |
+   | State Item           | add a dot to a rule, every posibble position,        |
+   |                      | represent current parse state                        |
+   | Items set            | All possible items for a grammar                     |
+   | Closure of Items set | All possible next rule.                              |
+   | GOTO(I, S)           |                                                      |
+   | FOLLOW(S)            | the set of symbols that can follow symbol S.         |
+   |                      |                                                      |
+** problems
+   - what is drivation means? in Page 199.
+   - What is the difference between leftmost drivation and rightmost drivation? In Page 201
+** clips
+   - LR(1) parser only knows the stack content and the next one input symbol to make decision if it should do reduce or do shift operation. If it can't then there is a confilict.
+
+** dangling else problem
+   Wrong grammar
+   #+begin_src text
+   stmt ::=
+         'if' exp 'then' stmt
+        |'if' exp 'then' stmt 'else' stmt
+        |other
+   #+end_src
+   for input: if exp then if exp then stmt else stmt, it will have two parsing tree. P211.
+
+   But how to judge why it is wrong by just looking the grammar?
+
+   Right grammar
+   #+begin_src text
+   stmt ::= 'if' exp 'then' stmt
+        |'if' exp 'then' stmt 'else' stmt
+        |other
+   #+end_src
