@@ -1,0 +1,9 @@
+* openstack essentials
+** summary
+   Read over today. Sat Sep  3 21:59:27 2016
+
+   - the minimal components to boot: keystone(the identity manager), glance(image), netural(network), nova(control).
+   - openstack is a collection of components with cmd and web interface to manipulate.
+   - relation to KVM or other hypervisor.It is KVM do the realwork, openstack like a script that define user, image, network, and let KVM run these resources as a compute unit. But the stength of openstack is it can scala the compute unit when needed, that is add compute power or deleted on demand(what this is called elasptic cloud compute).
+   - the book use ROD distribution of openstack to install it, must on redhad system. The installation is qute easy, with ony several command.
+   - monitor and telemeter. Monitor the resouce and status, alarm.
