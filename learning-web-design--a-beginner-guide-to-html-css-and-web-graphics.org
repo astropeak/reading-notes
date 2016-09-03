@@ -5,3 +5,5 @@
 
    New points: optimize graphics for different types.
    
+   Sun Aug 28 23:11:05 2016
+   Seems no more info after reading three chapters: table, form, css techniques. So there is no need to read this book in detailed manner.
