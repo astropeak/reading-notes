@@ -1,0 +1,28 @@
+* Agile Software Development, Principles, Patterns, and Practices
+  By Robert C. Martin
+** chapter 17 NULL object pattern
+   Always return a valid object. If you should return a null, return a NULL object that do nothing. This will make the cline no need to check if the object is valid.
+
+   A technique creating a NULL object for class A is using a anonymous class B  ot instance a static final variable in class A, and mimic all methods of class A but with empty function body. To check if the returned class is null, just compare the return value with ClassA.NULLObject.
+** chapter 16 singleton pattern and monostate pattern
+   The two patterns are used to created object that should be unique.
+
+   Singleton use private constructor, and static get method and static variable, while monostate make all member variables static.
+
+   Benefit of monostate: the client don't know it is monostate, can treat it as a regular class. Monostate can have derived classes.
+** chapter 18 Payment case study: the first iteration
+   This chapter provides a great example. The problem is somewhat complex, but the solusion is so neat and clear!
+
+   Design lessons form the example:
+   - divide to small class and build big class by composition. The Employer class is divide to there part: PaymentClassification(calculate income), PaymentMethod(pay to the employer), Affilication(calculate the outcome), and Employer class hold instances to these class, it consists of the three classes. By composition, all member variables can be arranged in a hirachy way(great!!).
+   - Member variables should be assign to the right class. You can assign 'salary' variable to Employer class, but it more suitable adding it to PaymentClassification, because it the only class that need that variable.
+   - When creating a big class such as Employer, you should pass all variables. Some are used by PaymentClassification class, some are used by PaymentMethod, some are used by Employer itself. Just creat all the component classes and pass the proper argumnets to them, instead of saving argumnets used by PaymentClassification to Employer.
+   - dynamic_cast is needed when you need to call a special method of derived class by base class pointer. And it is OK. THis is the only choice. You must use a base class pointer, then can you write generic codes for all derived classes. But for special cases for one derived class, you down cast to that class and call the special method.
+   - SRP, single reponsibility priciple.
+   - The API present to client.
+
+   Thinks:
+   - why not make Employer base class, and SalaryEmployer, HourlyEmployer derived classes? HourlyEmployer will have a special method 'AddTimeCard'. Employer has a virtual function 'PaymentClassifiction'.
+     The problem in this method is: It just divide classes considering the payment calculation part. If this is the only different part in Employer, then this way is OK. But there are other differences, such as PaymentMethod. Should we subclass HourlyEmployer by PaymentMethod to three classes? Then there will be 9 classes in total(e.g. one of them is MailMethodHourlyEmployer). This is much stupid.
+
+
